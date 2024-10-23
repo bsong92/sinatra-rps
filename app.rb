@@ -9,21 +9,17 @@ get("/") do
 end
 
 get("/rock") do
-  ["rock", "paper", "scissors"]
+  moves = ["rock", "paper", "scissors"]
 
-  comp_move = moves.sample
+  @comp_move = moves.sample
 
-  "
-  <h2>
-    We played rock!
-  </h2>
+  if @comp_move == "rock"
+    @outcome = "tied"
+  elsif @comp_move == "paper"
+    @outcome = "lost"
+  else
+    @outcome = "won"
+  end
 
-  <h2>
-   They played rock!
-  </h2>
-
-  <h2>
-    We tied!
-  </h2>
-  "
+  erb(:zebra)
 end
